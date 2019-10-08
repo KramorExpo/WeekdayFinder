@@ -16,7 +16,21 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var resultLabel: UILabel!
     @IBAction func findDay() {
-    
+        let calendar = Calendar.current
+        
+        var dateComponents = DateComponents()
+        dateComponents.day = Int(dayInfo.text!)
+        dateComponents.month = Int(monthInfo.text!)
+        dateComponents.year = Int(yearInfo.text!)
+        
+        let date = calendar.date(from: dateComponents)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        
+        let weekDay = dateFormatter.string(from: date!)
+        
+        resultLabel.text = weekDay
     }
     
     override func viewDidLoad() {
