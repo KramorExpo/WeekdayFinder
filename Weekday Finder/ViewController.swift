@@ -19,16 +19,17 @@ class ViewController: UIViewController {
         let calendar = Calendar.current
         
         var dateComponents = DateComponents()
-        dateComponents.day = Int(dayInfo.text!)
-        dateComponents.month = Int(monthInfo.text!)
-        dateComponents.year = Int(yearInfo.text!)
+        guard let day = dayInfo.text, let month = monthInfo.text, let year = yearInfo.text else {return}
+        dateComponents.day = Int(day)
+        dateComponents.month = Int(month)
+        dateComponents.year = Int(year)
         
-        let date = calendar.date(from: dateComponents)
+        guard let date = calendar.date(from: dateComponents) else {return}
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"
         
-        let weekDay = dateFormatter.string(from: date!)
+        let weekDay = dateFormatter.string(from: date)
         
         resultLabel.text = weekDay
     }
